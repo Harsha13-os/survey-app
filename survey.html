@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Title -->
+        <title>Survey Page</title>
+        <link rel="icon" href="images/GMU__logo.ico" type="image/x-icon" />
+        <!-- This page contains both embedded and bootstrap -->
+        <!-- Bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+        <!-- CSS -->
+        <style> 
+            body {
+                background-color: #d3d3d3;
+                font-family: 'Arial', sans-serif;
+            }
+
+            .custom-box {
+                background-color: #006633; 
+                border: 5px solid #FFCC33; 
+                border-radius: 10px;
+                padding: 20px;
+                color: #FFCC33;
+                text-align: center;
+                box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+                margin-left: 10px;
+                margin-right: 10px;
+                margin-bottom: 20px;
+            }
+
+            .form-group {
+                margin-bottom: 10px;
+            }
+
+            .form-container {
+                background-color: white;
+                border: 5px solid #006633;
+                border-radius: 10px;
+                padding: 40px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+                max-width: 800px;
+                margin: 0 auto;
+                margin-bottom: 20px;
+                width:100%;
+            }
+
+            label {
+                font-weight: bold;
+                color: #333;
+            }
+
+            input[type="text"],
+            input[type="email"],
+            input[type="number"],
+            input[type="tel"],
+            input[type="date"],
+            select,
+            textarea {
+                margin-bottom: 15px;
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                font-size: 14px;
+            }
+
+            /* Centering Submit and Reset buttons */
+            .button-group {
+                text-align: center;
+            }
+
+            /* Submit and Reset buttons */
+            input[type="submit"],
+            input[type="reset"] {
+                padding: 10px 20px;
+                background-color: #006633;
+                color: #FFCC33;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                margin-top: 10px;
+                margin-right: 10px;
+                font-size: 14px;
+            }
+
+            input[type="submit"]:hover,
+            input[type="reset"]:hover {
+                background-color: #004d26;
+            }
+
+        
+            .require{
+                color: rgb(217, 48, 37);
+                margin-right: 24px;
+                padding-left: .25em;
+                font-weight: bold;
+            }
+
+            .footer {
+            position: relative;
+            background-color: #006633;
+            color: #FFCC33;
+            text-align: center;
+            padding: 15px;
+            bottom: 0;
+            border: 5px; 
+            border-radius: 10px;
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            }
+        </style>
+
+    </head>
+    <body>
+        <div class="custom-box mt-3">
+            <h1>CS Department Survey Page</h1>
+        </div>
+        <div class="form-container mt-3">
+            <form method="post" action="" autocomplete="on">
+                <!--Student Details-->
+                <div class="form-group">
+                    <label for="firstname">First Name: <span class="require" aria-hidden="true">* required</span></label>
+                    <input name="First name" type="text" id="firstname" class="form-control" required autofocus>
+                </div>
+
+                <div class="form-group">
+                    <label for="lastname">Last Name: <span class="require" aria-hidden="true">* required</span></label>
+                    <input name="Last name" type="text" id="lastname" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="street">Street Address: <span class="require" aria-hidden="true">* required</span></label>
+                    <input name="Street address" type="text" id="street" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="city">City: <span class="require" aria-hidden="true">* required</span></label>
+                    <input name="City" type="text" id="city" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="state">State: <span class="require" aria-hidden="true">* required</span></label>
+                    <input name="State" type="text" id="state" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="zipcode">Zip Code: <span class="require" aria-hidden="true">* required</span></label>
+                    <input name="Zip code" type="number" id="zipcode" maxlength="5" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="telephone">Telephone Number: <span class="require" aria-hidden="true">* required</span></label>
+                    <input name="telephone" type="tel" id="telephone" class="form-control" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email: <span class="require" aria-hidden="true">* required</span></label>
+                    <input type="email" id="email" name="email" class="form-control" placeholder="sample@gmail.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="url">Website (optional):</label>
+                    <input type="url" id="url" name="url" class="form-control" placeholder="https://website.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="survey-date">Date of Survey: <span class="require" aria-hidden="true">* required</span></label>
+                    <input type="date" id="survey-date" name="survey-date" class="form-control" required>
+                </div>
+
+                <!-- Checkboxes for campus feedback -->
+                <div class="form-group">
+                    <p><strong>What did you like most about the campus?</strong><span class="require" aria-hidden="true">* required</span></p>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="students" name="like">
+                        <label class="form-check-label" for="students">Students</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="location" name="like">
+                        <label class="form-check-label" for="location">Location</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="campus" name="like">
+                        <label class="form-check-label" for="campus">Campus</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="atmosphere" name="like">
+                        <label class="form-check-label" for="atmosphere">Atmosphere</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="dorms" name="like">
+                        <label class="form-check-label" for="dorms">Dorm room</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="sports" name="like">
+                        <label class="form-check-label" for="sports">Sports</label>
+                    </div>
+                </div>
+
+                <!-- Radio buttons for interest -->
+                <div class="form-group">
+                    <p><strong>How did you become interested in the campus?</strong><span class="require" aria-hidden="true">* required</span></p>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" id="friends" name="interest" required>
+                        <label class="form-check-label" for="friends">Friends</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" id="television" name="interest" required>
+                        <label class="form-check-label" for="television">Television</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" id="internet" name="interest" required>
+                        <label class="form-check-label" for="internet">Internet</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" id="other" name="interest" required>
+                        <label class="form-check-label" for="other">Other</label>
+                    </div>
+                </div>
+
+                <!-- Recommendation likelihood -->
+                <div class="form-group">
+                    <label for="recommending">Likelihood of recommending the school:<span class="require" aria-hidden="true">* required</span></label>
+                    <select name="recommending" id="recommending" class="form-select">
+                        <option>Very likely</option>
+                        <option>Likely</option>
+                        <option>Unlikely</option>
+                    </select>
+                </div>
+
+                <!-- Raffle section -->
+                <div class="form-group">
+                    <label for="raffle"> Enter Raffle numbers:</label>
+                    <textarea name="comments" id="comments" rows="4" class="form-control" placeholder="Enter at least ten comma separated numbers ranging from 1 through 100:"></textarea>
+                </div>
+
+                <!-- Comments section -->
+                <div class="form-group">
+                    <label for="comments">Comments:</label>
+                    <textarea name="comments" id="comments" rows="4" class="form-control" placeholder="Enter comments here..."></textarea>
+                </div>
+
+                <!-- High school graduation month
+                <div class="form-group">
+                    <label for="grad-month">High School graduation month:<span class="require" aria-hidden="true">* required</span></label>
+                    <select name="grad-month" id="grad-month" class="form-select">
+                        <option>January</option>
+                        <option>February</option>
+                        <option>March</option>
+                        <option>April</option>
+                        <option>May</option>
+                        <option>June</option>
+                        <option>July</option>
+                        <option>August</option>
+                        <option>September</option>
+                        <option>October</option>
+                        <option>November</option>
+                        <option>December</option>
+                    </select>
+                </div> -->
+
+                
+
+                <!-- Centered Submit and Reset buttons -->
+                <div class="button-group">
+                    <input type="submit" value="Submit">
+                    <input type="reset" value="Reset">
+                </div>
+            </form>
+        </div>
+    </body>
+    <footer>
+        <div class="footer">
+            &copy; 2024 GMU Computer Science Department
+        </div>
+    </footer>
+</html>
