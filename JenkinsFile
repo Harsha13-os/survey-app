@@ -3,15 +3,19 @@ pipeline {
     environment {
         GCP_PROJECT = 'swe645-hw2-453515'
         IMAGE_NAME = "gcr.io/${GCP_PROJECT}/survey-app"
+        CLUSTER_NAME = 'survey-cluster'
+        CLUSTER_ZONE = 'us-east1-b'
     }
     stages {
         stage('Authenticate with GCP') {
             steps {
                 withCredentials([file(credentialsId: 'gcp-jenkins-key', variable: 'GCP_KEY_FILE')]) {
                     sh '''
+                    export USE_GKE_GCLOUD_AUTH_PLUGIN=True
                     gcloud auth activate-service-account --key-file=$GCP_KEY_FILE
                     gcloud config set project $GCP_PROJECT
                     gcloud auth configure-docker gcr.io --quiet
+                    gcloud container clusters get-credentials $CLUSTER_NAME --zone $CLUSTER_ZONE --project $GCP_PROJECT
                     '''
                 }
             }
@@ -24,6 +28,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 sh '''
+                export DOCKER_BUILDKIT=1
                 docker build -t $IMAGE_NAME:$BUILD_NUMBER .
                 '''
             }
@@ -38,7 +43,7 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 sh '''
-                kubectl apply -f deployment.yaml
+                kubectl apply --validate=false -f deployment.yaml
                 kubectl set image deployment/survey-app survey-app=$IMAGE_NAME:$BUILD_NUMBER --record
                 kubectl rollout status deployment/survey-app
                 '''
