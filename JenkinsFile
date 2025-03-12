@@ -17,7 +17,7 @@ pipeline {
         }
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/Harsha13-os/survey-app.git'
+                git branch: 'main', url: 'https://github.com/Harsha13-os/survey-app.git'
             }
         }
         stage('Build Docker Image') {
