@@ -3,11 +3,10 @@ kind: Service
 metadata:
   name: survey-service
 spec:
+  type: LoadBalancer
   selector:
     app: survey
   ports:
     - protocol: TCP
       port: 80
       targetPort: 80
-      nodeport: 32000
-  type: LoadBalancer  # This allows external access

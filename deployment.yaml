@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: survey-app
 spec:
-  replicas: 3  # To Ensure at least 3 pods run
+  replicas: 3
   selector:
     matchLabels:
       app: survey
@@ -13,7 +13,8 @@ spec:
         app: survey
     spec:
       containers:
-        - name: survey-container
-          image: survey
+        - name: survey-app
+          image: gcr.io/swe645-hw2-453515/survey-app:v1
+
           ports:
             - containerPort: 80
