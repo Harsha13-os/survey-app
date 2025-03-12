@@ -38,7 +38,7 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 sh '''
-                kubectl apply -f k8s/deployment.yaml
+                kubectl apply -f deployment.yaml
                 kubectl set image deployment/survey-app survey-app=$IMAGE_NAME:$BUILD_NUMBER --record
                 kubectl rollout status deployment/survey-app
                 '''
