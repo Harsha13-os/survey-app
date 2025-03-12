@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: survey-deployment
+  name: survey-app
 spec:
   replicas: 3  # To Ensure at least 3 pods run
   selector:
