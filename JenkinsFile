@@ -11,6 +11,7 @@ pipeline {
                     sh '''
                     gcloud auth activate-service-account --key-file=$GCP_KEY_FILE
                     gcloud config set project $GCP_PROJECT
+                    gcloud auth configure-docker gcr.io --quiet
                     '''
                 }
             }
@@ -22,19 +23,23 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t $IMAGE_NAME:$BUILD_NUMBER .'
+                sh '''
+                docker build -t $IMAGE_NAME:$BUILD_NUMBER .
+                '''
             }
         }
         stage('Push to GCR') {
             steps {
-                sh 'gcloud auth configure-docker'
-                sh 'docker push $IMAGE_NAME:$BUILD_NUMBER'
+                sh '''
+                docker push $IMAGE_NAME:$BUILD_NUMBER
+                '''
             }
         }
         stage('Deploy to Kubernetes') {
             steps {
                 sh '''
-                kubectl set image deployment/survey-app survey-app=$IMAGE_NAME:$BUILD_NUMBER
+                kubectl apply -f k8s/deployment.yaml
+                kubectl set image deployment/survey-app survey-app=$IMAGE_NAME:$BUILD_NUMBER --record
                 kubectl rollout status deployment/survey-app
                 '''
             }
