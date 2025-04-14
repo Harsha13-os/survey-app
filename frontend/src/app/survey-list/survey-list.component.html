@@ -1,0 +1,30 @@
+<div class="container mt-4">
+  <h2>All Surveys</h2>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Date of Survey</th>
+          <th>Recommendation</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let survey of surveys">
+          <td>{{survey.firstName}} {{survey.lastName}}</td>
+          <td>{{survey.email}}</td>
+          <td>{{survey.surveyDate}}</td>
+          <td>{{survey.recommendationLikelihood}}</td>
+          <td>
+            <button class="btn btn-sm btn-primary me-2" 
+                    (click)="survey.id !== undefined && editSurvey(survey.id)">Edit</button>
+            <button class="btn btn-sm btn-danger" 
+                    (click)="survey.id !== undefined && deleteSurvey(survey.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

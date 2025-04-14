@@ -1,0 +1,91 @@
+<div class="container mt-4">
+    <h2>Student Survey Form</h2>
+    <form [formGroup]="surveyForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label>First Name</label>
+          <input type="text" class="form-control" formControlName="firstName">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label>Last Name</label>
+          <input type="text" class="form-control" formControlName="lastName">
+        </div>
+      </div>
+  
+      <div class="mb-3">
+        <label>Street Address</label>
+        <input type="text" class="form-control" formControlName="streetAddress">
+      </div>
+  
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label>City</label>
+          <input type="text" class="form-control" formControlName="city">
+        </div>
+        <div class="col-md-3 mb-3">
+          <label>State</label>
+          <input type="text" class="form-control" formControlName="state">
+        </div>
+        <div class="col-md-3 mb-3">
+          <label>ZIP</label>
+          <input type="text" class="form-control" formControlName="zip">
+        </div>
+      </div>
+  
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label>Telephone</label>
+          <input type="tel" class="form-control" formControlName="telephone">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label>Email</label>
+          <input type="email" class="form-control" formControlName="email">
+        </div>
+      </div>
+  
+      <div class="mb-3">
+        <label>Date of Survey</label>
+        <input type="date" class="form-control" formControlName="surveyDate">
+      </div>
+  
+      <div class="mb-3">
+        <label>What did you like most about the campus?</label>
+        <div class="form-check" *ngFor="let option of likedMostOptions">
+          <input class="form-check-input" type="checkbox" [value]="option" 
+                 (change)="onLikedMostChange($event, option)">
+          <label class="form-check-label">{{option}}</label>
+        </div>
+      </div>
+  
+      <div class="mb-3">
+        <label>How did you become interested in the university?</label>
+        <div class="form-check" *ngFor="let option of interestOptions">
+          <input class="form-check-input" type="radio" 
+                 [value]="option" formControlName="interestSource">
+          <label class="form-check-label">{{option}}</label>
+        </div>
+      </div>
+  
+      <div class="mb-3">
+        <label>Likelihood of recommending this school</label>
+        <select class="form-control" formControlName="recommendationLikelihood">
+          <option value="">Select an option</option>
+          <option *ngFor="let option of recommendationOptions" [value]="option">
+            {{option}}
+          </option>
+        </select>
+      </div>
+  
+      <div class="mb-3">
+        <label>Additional Comments</label>
+        <textarea class="form-control" rows="3" formControlName="comments"></textarea>
+      </div>
+  
+      <div class="mb-3">
+      <button type="submit" class="btn btn-primary me-2" [disabled]="!surveyForm.valid">
+        {{ isEditMode ? 'Update' : 'Submit' }}
+      </button>
+      <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancel</button>
+    </div>
+    </form>
+  </div>
