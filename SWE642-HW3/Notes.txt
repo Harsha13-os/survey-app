@@ -1,0 +1,36 @@
+Backend:
+--------
+- Install java-17 and intelliJ community editions
+- Used springboot starter with added dependencies from the springboot initializer website
+- Update the application.properties with SQL credientials
+- Add the database model
+- Add endpoints for Post, Get, Get for survey id, Put for survey id, Delete for a survey id
+
+mvn spring-boot:run
+# to run the application locally
+
+Database:
+---------
+- Create a MySQL database with hostname, username, password
+- Test connection in dbeaver / MySQL workbench
+
+Frontend:
+---------
+Install nvm with latest node and npm
+install nvm:
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+setup nvm path:
+    export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")" [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+refresh source:
+    source ~/.zshrc
+check nvm:
+    nvm --version
+install latest node:
+    nvm install node
+use latest node:
+    nvm use node
+create a new project
+    ng new frontend
+    cd frontend
+start server
+    ng serve
