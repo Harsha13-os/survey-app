@@ -4,8 +4,8 @@ pipeline {
 
     environment {
         PROJECT_ID = "swe645-hw3-456321"
-        FRONTEND_IMAGE = "us-east1-docker.pkg.dev/${PROJECT_ID}/frontend-repo/frontend:latest"
-        BACKEND_IMAGE = "us-east1-docker.pkg.dev/${PROJECT_ID}/backend-repo/backend:latest"
+        FRONTEND_IMAGE = "us-east1-docker.pkg.dev/swe645-hw3-456321/frontend-repo/frontend:latest"
+        BACKEND_IMAGE = "us-east1-docker.pkg.dev/swe645-hw3-456321/backend-repo/backend:latest"
         CLUSTER_NAME = "swe645-cluster"
         CLUSTER_ZONE = "us-east1-b"
     }
@@ -13,7 +13,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/Harsha13-os/survey-app'
+                git 'https://github.com/Harsha13-os/survey-app', branch:'main'
             }
         }
 
