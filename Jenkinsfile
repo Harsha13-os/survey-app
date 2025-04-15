@@ -13,7 +13,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/Harsha13-os/survey-app', branch:'main'
+                git url: 'https://github.com/Harsha13-os/survey-app', branch: 'main'
             }
         }
 
