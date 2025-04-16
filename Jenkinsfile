@@ -22,6 +22,7 @@ pipeline {
                 dir('frontend') {
                     sh 'npm install'
                     sh 'npm run build --prod'
+                    sh 'gcloud auth activate-service-account --key-file=/var/lib/jenkins/gcloud/key.json'
                     sh 'gcloud auth configure-docker us-east1-docker.pkg.dev --quiet'
                     sh 'docker buildx build --platform=linux/amd64 -t $FRONTEND_IMAGE --push .'
                 }
