@@ -41,6 +41,8 @@ pipeline {
 
         stage('Deploy to GKE') {
             steps {
+                sh 'echo $PATH'
+                sh 'which gke-gcloud-auth-plugin'
                 sh 'gcloud container clusters get-credentials $CLUSTER_NAME --zone $CLUSTER_ZONE --project $PROJECT_ID'
                 sh 'kubectl set image deployment/frontend-deployment frontend=$FRONTEND_IMAGE'
                 sh 'kubectl set image deployment/backend-deployment backend=$BACKEND_IMAGE'
