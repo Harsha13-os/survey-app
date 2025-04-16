@@ -1,4 +1,3 @@
-
 pipeline {
     agent any
 
@@ -8,6 +7,7 @@ pipeline {
         BACKEND_IMAGE = "us-east1-docker.pkg.dev/swe645-hw3-456321/backend-repo/backend:latest"
         CLUSTER_NAME = "swe645-cluster"
         CLUSTER_ZONE = "us-east1-b"
+        PATH = "/home/harsha/google-cloud-sdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
     }
 
     stages {
@@ -42,7 +42,7 @@ pipeline {
         stage('Deploy to GKE') {
             steps {
                 sh 'echo $PATH'
-                sh 'which gke-gcloud-auth-plugin'
+                sh 'which gke-gcloud-auth-plugin || true'  // Avoid early failure
                 sh 'gcloud container clusters get-credentials $CLUSTER_NAME --zone $CLUSTER_ZONE --project $PROJECT_ID'
                 sh 'kubectl set image deployment/frontend-deployment frontend=$FRONTEND_IMAGE'
                 sh 'kubectl set image deployment/backend-deployment backend=$BACKEND_IMAGE'
