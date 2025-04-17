@@ -20,6 +20,7 @@ pipeline {
         stage('Build Frontend') {
             steps {
                 dir('frontend') {
+                    sh 'rm -rf dist/'
                     sh 'npm install'
                     sh 'npm run build --prod'
                     sh 'gcloud auth activate-service-account --key-file=/var/lib/jenkins/gcloud/key.json'
