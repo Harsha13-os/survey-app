@@ -9,7 +9,7 @@ pipeline {
         CLUSTER_ZONE = "us-east1-b"
         PATH = "/home/harsha/google-cloud-sdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
     }
-
+    // GitHub 
     stages {
         stage('Checkout') {
             steps {
